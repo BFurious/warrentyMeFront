@@ -1,0 +1,194 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  width:100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  place-items: center;
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  font-size: .8em;
+  background-size: 200% auto;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: inherit;
+  background-image: linear-gradient(45deg, #3b82f6, #2dd4bf, #3b82f6);
+}
+button:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.editor{
+  width: 100%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.editorButton{
+  display: flex;
+  gap:10px;
+  align-items: center;
+  justify-content: center;
+  margin: 100px auto;
+}
+
+.dashboardContainer{
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+
+.editorContainer{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  width: 80%;
+  align-items: center;
+}
+
+.letterList{
+  list-style: none;
+  padding: 0;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow: scroll;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.letterList .trash:hover{
+  color: red;
+}
+
+.letterListContainer, .addNew{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius: 5px;
+  max-height: 590px;
+}
+
+.active{
+  background-image: linear-gradient(45deg, #3b82f6, #2dd4bf, #3b82f6);
+}
+
+.letterListContainer li:hover, .addNew:hover {
+  background-image: linear-gradient(45deg, #3b82f6, #2dd4bf, #3b82f6);
+}
+
+.letterListContainer .letterList li, .addNew{
+  display: flex;
+  flex-direction: row;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  font-size: .8em;
+  background-size: 200% auto;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  justify-content: space-between;
+  margin:10px;
+  cursor: pointer;
+  color:black;
+  background-color: rgb(219, 219, 219);
+}
+
+.blue-button {
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  font-size: .8em;
+  background-size: 200% auto;
+  color: rgb(255, 255, 255);
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  cursor: pointer;
+}
+
+/* Add this to your CSS file */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #09f;
+  transition: width 0.3s ease;
+}
+
+.login-google{
+  display: flex;
+  flex-direction: column;
+  margin:auto !important;
+  width:100%;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
