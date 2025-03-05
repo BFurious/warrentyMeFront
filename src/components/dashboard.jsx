@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { message, Input } from "antd"
 import { CircularProgress, LinearProgress } from "@mui/material"; // For spinner and progress bar
-import { FaPlus, FaTrash } from "react-icons/fa";
+import { FaPlus, FaSignOutAlt, FaTrash, FaTruckLoading } from "react-icons/fa";
 import { getUserRole } from "../utils/helper";
 import { io } from "socket.io-client";
 
@@ -157,6 +157,20 @@ const Dashboard = () => {
       setLoadingProgress(false);
     }
   };
+  // Delete a letter
+  const logOut = async () => {
+    setLoadingProgress(true);
+    try {
+      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`, {
+        withCredentials: true,
+      });
+      message.success("Logout successfully");
+    } catch (error) {
+      message.error(`Error logging out: ${error.message}`);
+    } finally {
+      setLoadingProgress(false);
+    }
+  };
 
   // Save draft locally on change
   const handleChange = (value) => {
@@ -170,7 +184,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Welcome {userRole || "User"}</h1>
+      <div>
+        <h1 style={{ textAlign: "center" }}>Welcome {userRole || "User"}</h1>
+        <button onClick={logOut} disabled={loadingProgress || saveLoading}>
+          {loadingProgress ? <FaTruckLoading /> : <FaSignOutAlt />}
+        </button>
+      </div>
       {uploadProgress > 0 && (
         <LinearProgress
           variant="determinate"

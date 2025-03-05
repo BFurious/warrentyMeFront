@@ -12,7 +12,7 @@ const AuthWrapper = ({ children }) => {
     const checkAuth = async () => {
       try {
         // Check if the user is authenticated
-        await axios.get(`${import.meta.env.VITE_API_BASE_URL}/auth/check-auth`, {
+        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/check-auth`, {
           withCredentials: true,
         });
         setIsAuthenticated(true);
