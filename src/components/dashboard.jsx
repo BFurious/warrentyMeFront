@@ -7,6 +7,7 @@ import { CircularProgress, LinearProgress } from "@mui/material"; // For spinner
 import { FaPlus, FaSignOutAlt, FaTrash, FaTruckLoading } from "react-icons/fa";
 import { getUserRole } from "../utils/helper";
 import { io } from "socket.io-client";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [content, setContent] = useState("");
@@ -20,6 +21,7 @@ const Dashboard = () => {
   const [uploadProgress, setUploadProgress] = useState(0); // Upload progress state
   const [isRealTime, setIsRealTime] = useState(0); // Delete progress state
   const [selectedLetterId, setSelectedLetterId] = useState(null); // Track selected letter
+  const navigate = useNavigate();
 
   // Fetch saved letters on component mount
   useEffect(() => {
@@ -161,9 +163,10 @@ const Dashboard = () => {
   const logOut = async () => {
     setLoadingProgress(true);
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`, {
+      await axios.get(`${import.meta.env.VITE_API_BASE_URL}/auth/logout`, {
         withCredentials: true,
       });
+      navigate("/"); // Redirect to login page
       message.success("Logout successfully");
     } catch (error) {
       message.error(`Error logging out: ${error.message}`);
@@ -184,12 +187,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <div>
-        <h1 style={{ textAlign: "center" }}>Welcome {userRole || "User"}</h1>
-        <button onClick={logOut} disabled={loadingProgress || saveLoading}>
-          {loadingProgress ? <FaTruckLoading /> : <FaSignOutAlt />}
-        </button>
-      </div>
+
+      <h1 style={{ textAlign: "center" }}>Welcome {userRole || "User"}</h1>
       {uploadProgress > 0 && (
         <LinearProgress
           variant="determinate"
@@ -262,6 +261,9 @@ const Dashboard = () => {
 
               <button onClick={fetchSavedLetters} disabled={loadingProgress || saveLoading}>
                 {loadingProgress ? "Loading..." : "Load Letters"}
+              </button>
+              <button onClick={logOut} disabled={loadingProgress || saveLoading}>
+                {loadingProgress ? <FaTruckLoading /> : <FaSignOutAlt />}
               </button>
             </div>
           </>

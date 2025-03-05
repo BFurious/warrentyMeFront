@@ -12,14 +12,18 @@ const AuthWrapper = ({ children }) => {
     const checkAuth = async () => {
       try {
         // Check if the user is authenticated
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/check-auth`, {
+        const isAuthenticate = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/auth/check-auth`, {
           withCredentials: true,
         });
-        setIsAuthenticated(true);
+        if (isAuthenticate.status === 200) {
+          setIsAuthenticated(true);
+        } else{
+          throw new Error("Unauthorized. Please log in.")
+        }
       } catch (error) {
         message.error("Unauthorized. Please log in.");
         navigate("/"); // Redirect to login page
-    } finally {
+      } finally {
         setLoading(false);
       }
     };
