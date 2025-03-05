@@ -6,5 +6,6 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173, // or any other port you prefer
-  },
+    allowedHosts:["warrentymefront.onrender.com", "https://warrenty-me-front.vercel.app/"]
+  }
 });
