@@ -21,6 +21,7 @@ const AuthWrapper = ({ children }) => {
           throw new Error("Unauthorized. Please log in.")
         }
       } catch (error) {
+        console.error({...error});
         message.error("Unauthorized. Please log in.");
         navigate("/"); // Redirect to login page
       } finally {
